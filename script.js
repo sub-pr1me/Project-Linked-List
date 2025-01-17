@@ -15,3 +15,6 @@ list.prepend("mouse")
 console.log(list.toString());
 
 console.log(list.size());
+
+console.log(list.headNode());
+console.log(list.tailNode());

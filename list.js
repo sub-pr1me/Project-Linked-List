@@ -93,6 +93,42 @@ function LinkedList() {
         contains: function(value) {
             return this.toString().includes(`${value}`) ? true : false;
         },
+
+        find: function(value) {
+            let currentNode = head;
+            let index = 0;
+            if (length === 0) {
+                return null;
+            };
+            while (index < length) {
+                if (value === currentNode.value) {
+                    return index;
+                };
+                currentNode = currentNode.next;
+                index++;
+            };
+            return null;
+        },
+
+        insertAt: function(value, index) {
+            if (index >= 0 && index < length) {
+                let newNode = addNode(value);
+                newNode.next = this.at(index);
+                this.at(index-1).next = newNode;
+                length++;
+                return;
+            };
+            console.log('INVALID INDEX');
+        },
+
+        removeAt: function(index) {
+            if (index >= 0 && index < length) {
+                this.at(index-1).next = this.at(index+1);
+                length--;
+                return;
+            };
+            console.log('INVALID INDEX');
+        },
         
         toString: function() {
             let string = '';
@@ -106,7 +142,7 @@ function LinkedList() {
             };
             string += `( ${currentNode.value} ) -> `;
             return `${string}null`;
-        }        
+        }   
     };
 };
 

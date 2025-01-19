@@ -15,14 +15,18 @@ list.prepend("frog");
 console.log(list.toString());
 console.log(list.size());
 
-console.log(list.headNode().value);
-console.log(list.tailNode().value);
+list.insertAt('ostrich', 2);
+console.log(list.toString());
+console.log(list.size());
 
-console.log(list.at(3).value);
-
-list.pop();
 list.pop();
 console.log(list.toString());
+console.log(list.size());
 
-console.log(list.contains('giraffe'));
-console.log(list.contains('cat'));
+list.removeAt(3);
+console.log(list.toString());
+console.log(list.size());
+
+list.removeAt(13);
+console.log(list.toString());
+console.log(list.size());

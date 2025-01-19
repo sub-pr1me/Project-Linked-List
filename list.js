@@ -3,7 +3,6 @@ import { addNode } from "./addNode.js";
 function LinkedList() {
     let head = null;
     let tail = null;
-    let string = '';
     let length = 0;
     return {
         append: function(value) {
@@ -11,7 +10,6 @@ function LinkedList() {
             let newNode = addNode(value);
             if (!currentNode) {
                 currentNode = newNode;
-                string += `( ${currentNode.value} ) -> `;
                 length++;
                 head = newNode;
                 tail = newNode;
@@ -22,7 +20,6 @@ function LinkedList() {
                 };
                 currentNode.next = newNode;
                 tail = newNode;
-                string += `( ${currentNode.next.value} ) -> `;
                 length++;
             };            
         },
@@ -30,9 +27,8 @@ function LinkedList() {
         prepend: function(value) {
             let currentNode = head;
             let newNode = addNode(value);
-            if (string === '') {
+            if (length === 0) {
                 currentNode = newNode;
-                string += `( ${currentNode.value} ) -> `;
                 length++;
                 head = newNode;
                 tail = newNode;
@@ -41,7 +37,6 @@ function LinkedList() {
                 let theRest = currentNode;
                 currentNode = newNode;
                 currentNode.next = theRest;
-                string = `( ${currentNode.value} ) -> ${string}`;
                 length++;
                 head = newNode;
             };
@@ -61,7 +56,7 @@ function LinkedList() {
 
         at: function(index) {
             let currentNode = head;
-            if (string === '') {
+            if (length === 0) {
                 return `THE LIST IS EMPTY`;
             } else {
                 if (index === 0) {
@@ -76,10 +71,38 @@ function LinkedList() {
             };
 
         },
+
+        pop: function() {
+            if (length === 0) {
+                return 'THE LIST IS ALREADY EMPTY';
+            };
+            if (length === 1) {
+                head = null;
+                length--;
+                return;
+            }
+            let pointer = {};
+            pointer.next = head;
+            while(pointer.next.next) {
+                pointer = pointer.next;
+            };
+            pointer.next = null
+            length--;
+        },
         
-        toString: function() {            
-            return string === '' ? 'THE LIST IS EMPTY' : `${string}null`;
-        }
+        toString: function() {
+            let string = '';
+            let currentNode = head;
+            if (!currentNode) {
+                return 'THE LIST IS EMPTY';
+            };
+            while (currentNode.next) {
+                string += `( ${currentNode.value} ) -> `;
+                currentNode = currentNode.next;            
+            };
+            string += `( ${currentNode.value} ) -> `;
+            return `${string}null`;
+        }        
     };
 };
 

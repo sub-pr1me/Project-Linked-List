@@ -58,6 +58,24 @@ function LinkedList() {
         tailNode: function() {
             return tail;
         },
+
+        at: function(index) {
+            let currentNode = head;
+            if (string === '') {
+                return `THE LIST IS EMPTY`;
+            } else {
+                if (index === 0) {
+                    return head;
+                };
+                let i = 1;
+                while (i<=index) {
+                    currentNode = currentNode.next;
+                    i++;
+                };
+                return currentNode;
+            };
+
+        },
         
         toString: function() {            
             return string === '' ? 'THE LIST IS EMPTY' : `${string}null`;

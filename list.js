@@ -89,6 +89,10 @@ function LinkedList() {
             pointer.next = null
             length--;
         },
+
+        contains: function(value) {
+            return this.toString().includes(`${value}`) ? true : false;
+        },
         
         toString: function() {
             let string = '';
